@@ -6,7 +6,7 @@
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 
 .tab-panel {
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     padding: 10px;
     border-radius: 4px;
   }
