@@ -54,10 +54,6 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls;
   }
 
-
-  
-
-
   // members/3
   // this method receives the id from the member-card.component.html and then uses the
   // userService to get a particular user from the API
