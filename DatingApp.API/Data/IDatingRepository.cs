@@ -20,5 +20,7 @@ namespace DatingApp.API.Data
          Task<Photo> GetPhoto(int id);
 
          Task<Photo> GetMainPhotoForUser(int userId);
+        //  Method checks where like already exists for user
+         Task<Like> GetLike(int userId, int reciptientId);
     }
 }
