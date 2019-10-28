@@ -43,7 +43,7 @@ namespace DatingApp.API
            services.AddTransient<Seed>();
             // IServiceCollection IServiceCollection.AddDbContext<DataContext>(Action<DbContextOptionsBuilder> optionsAction = null, ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
             services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .AddJsonOptions(opt => {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
@@ -51,7 +51,7 @@ namespace DatingApp.API
             //configure the CloudinarySettings in the appsetting.json to the services using the 
             //CloudinarySettings model class
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
-            services.AddAutoMapper();
+            services.AddAutoMapper(typeof(DatingRepository).Assembly);
             /*including the repository interface and repo class in the startup class
             so that it is available for injection in the controller*/
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -70,7 +70,7 @@ namespace DatingApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
