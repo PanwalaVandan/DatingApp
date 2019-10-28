@@ -22,5 +22,12 @@ namespace DatingApp.API.Data
          Task<Photo> GetMainPhotoForUser(int userId);
         //  Method checks where like already exists for user
          Task<Like> GetLike(int userId, int reciptientId);
+         Task<Message> GetMessage(int Id);
+
+         //Inbox, Outbox, Unread messages
+         Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams);
+         Task<IEnumerable<Message>> GetMessageThread(int userId, int reciptientId);
+
+
     }
 }

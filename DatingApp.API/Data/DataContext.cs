@@ -19,6 +19,8 @@ namespace DatingApp.API.Data
         // Need to specify the relationship explicitly for this table since it is many to many
         public DbSet<Like> Likes { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder) {
             // This code doesnt allow any user to like more than once
@@ -35,6 +37,16 @@ namespace DatingApp.API.Data
             .HasOne(u => u.Liker)
             .WithMany(u => u.Likees)
             .HasForeignKey(u => u.LikerId )
+            .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Message>()
+            .HasOne(u => u.Sender)
+            .WithMany(u => u.MessagesSent)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Message>()
+            .HasOne(u => u.Recipient)
+            .WithMany(u => u.MessagesReceived)
             .OnDelete(DeleteBehavior.Restrict);
         }
     }
