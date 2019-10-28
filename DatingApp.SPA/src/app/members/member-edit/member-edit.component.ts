@@ -13,7 +13,7 @@ import { AuthService } from '../../_services/auth.service';
 })
 export class MemberEditComponent implements OnInit {
   // in order to reset the form we use the @ViewChild declarator
-  @ViewChild('editForm') editForm: NgForm;
+  @ViewChild('editForm', {static: true}) editForm: NgForm;
   user: User;
   photoUrl: string;
   // if the user clicks on window close while editing the form the user
